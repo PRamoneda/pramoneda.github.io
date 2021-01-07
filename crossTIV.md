@@ -2,4 +2,6 @@
 layout: "page"
 ---
 
-Test if it works
+# Test if it works
+
+{% boxplot.html %}
