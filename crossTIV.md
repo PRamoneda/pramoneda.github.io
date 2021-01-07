@@ -2,6 +2,6 @@
 layout: "page"
 ---
 
-# Works
+# It Works
 
-{% boxplot.html %}
+{% include boxplot.html %}
