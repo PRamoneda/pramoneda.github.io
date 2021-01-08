@@ -2,7 +2,6 @@
 layout: "default"
 ---
 
-# It Works
 <!-- Blog -->
 <section class="content-section bg-light" id="crossTIV_blogpost">
     <div class="container text-center">
