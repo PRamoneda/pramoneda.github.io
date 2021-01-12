@@ -20,25 +20,25 @@ $$</p>
 <p>Next, we list the full set of harmonic descriptors adopted in the study and detail their mathematical definition and musical interpretation.</p>
 <ul>
 <li>
-<p><strong>Dissonance (diss)</strong>:  provides a perceptually inspired indicator of dissonance, as the normalized as a weighted magnitude of TIV magnitudes subtracted from unity $$1 - \frac{\| T(k)}{ \|w_*(k)\|}$$, where $$w_*$$ can assume $$w_a(k) = {3, 8, 11.5, 15, 14.5, 7.5}$$ for audio input chromas and $$w_s(k) = {2, 11, 17, 16, 19, 7}$$ for symbolic pitch class (pc) set. The descriptor output ranges from [0,1], where 0 corresponds to a highly dissonant sound (12 pitch class cluster) and 1 to a very consonant single pitch class.</p>
+<p><strong>Dissonance (diss)</strong>:  provides a perceptually inspired indicator of dissonance, as the normalized as a weighted magnitude of TIV magnitudes subtracted from unity $$1 - \frac{\| T(k)\|}{ \|w_*(k)\|}$$, where $$w_*$$ can assume $$w_a(k) = {3, 8, 11.5, 15, 14.5, 7.5}$$ for audio input chromas and $$w_s(k) = {2, 11, 17, 16, 19, 7}$$ for symbolic pitch class (pc) set. The descriptor output ranges from [0,1], where 0 corresponds to a highly dissonant sound (12 pitch class cluster) and 1 to a very consonant single pitch class.</p>
 </li>
 <li>
-<p><strong>Chromaticity (chromatic):</strong> indicates the level of the chromatic quality of a given chroma or pc set as the magnitude of the TIV in the chromatic pitch circle. It is computed as the magnitude of the T(2) normalized to unity (range [0-1]), $$\frac{\|| T(1)\||}{w_*(1)}$$.</p>
+<p><strong>Chromaticity (chromatic):</strong> indicates the level of the chromatic quality of a given chroma or pc set as the magnitude of the TIV in the chromatic pitch circle. It is computed as the magnitude of the T(2) normalized to unity (range [0-1]), $$\frac{\| T(1)\|}{w_*(1)}$$.</p>
 </li>
 <li>
-<p><strong>Dyadicity (dyad):</strong> indicates the level to which a given pc set or sonority embeds the tritone quality, expressive for chords consisting of stacked perfect and augmented fourths. It is computed as the magnitude of the T(2) normalized to unity (range [0-1]), $$\frac{\|| T(2)\||}{w_*(2)}$$.</p>
+<p><strong>Dyadicity (dyad):</strong> indicates the level to which a given pc set or sonority embeds the tritone quality, expressive for chords consisting of stacked perfect and augmented fourths. It is computed as the magnitude of the T(2) normalized to unity (range [0-1]), $$\frac{\| T(2)\|}{w_*(2)}$$.</p>
 </li>
 <li>
-<p><strong>Triadicity (triad):</strong> indicates the level to which a given pc set or sonority consists of major and minor triads. It is computed as the magnitude of the T(3) normalized to unity (range [0-1]), $$\frac{\|| T(3)\||}{w_*(3)}$$.</p>
+<p><strong>Triadicity (triad):</strong> indicates the level to which a given pc set or sonority consists of major and minor triads. It is computed as the magnitude of the T(3) normalized to unity (range [0-1]), $$\frac{\| T(3)\|}{w_*(3)}$$.</p>
 </li>
 <li>
-<p><strong>Diminished Quality (dim):</strong> indicates the level to which a given pc set or sonority complies to a diminished seventh chord. It is computed as the magnitude of the T(4) normalized to unity (range [0-1]), $$\frac{\|| T(4)\||}{w_*(4)}$$.</p>
+<p><strong>Diminished Quality (dim):</strong> indicates the level to which a given pc set or sonority complies to a diminished seventh chord. It is computed as the magnitude of the T(4) normalized to unity (range [0-1]), $$\frac{\| T(4)\|}{w_*(4)}$$.</p>
 </li>
 <li>
-<p><strong>Diatonicity (diatonic):</strong> indicates the level of diatonicity of a given chroma or pc. It is computed as the magnitude of the T(5) normalized to unity (range [0-1]), $$\frac{\|| T(5)\||}{w_*(5)}$$.</p>
+<p><strong>Diatonicity (diatonic):</strong> indicates the level of diatonicity of a given chroma or pc. It is computed as the magnitude of the T(5) normalized to unity (range [0-1]), $$\frac{\| T(5)\|}{w_*(5)}$$.</p>
 </li>
 <li>
-<p><strong>Whole toneness (wholeTone):</strong> indicates the level to which a given pc set or sonority complies to a whole-tone set. It is computed as the magnitude of the T(6) normalized to unity (range [0-1]), $$\frac{\|| T(6)\||}{w_*(6)}$$.</p>
+<p><strong>Whole toneness (wholeTone):</strong> indicates the level to which a given pc set or sonority complies to a whole-tone set. It is computed as the magnitude of the T(6) normalized to unity (range [0-1]), $$\frac{\| T(6)\|}{w_*(6)}$$.</p>
 </li>
 <li>
 <p><strong>HCDF peaks:</strong> result from the magnitude of the peaks in the Harmonic Change Detection Function (HCDF) in the Tonal Interval Space. Larger magnitude values indicate harmonic changes from greater perceptual distance across two sequential chords.</p>
@@ -57,5 +57,6 @@ $$</p>
 <p>To assess the intercorrelations among harmonic audio descriptors and the number of groups of independent descriptors, we modeled the between-descriptor distances using two distance models: hierarchical clustering and metric MDS. Distance models are computed from a square matrix denoting the absolute correlation distance across all harmonic audio descriptors.</p>
 <img class="img-responsive center" src="/assets/img/dendogram.png" style="max-width: 87%;">
 <img class="img-responsive center" src="/assets/img/mds.png">
-<p><strong>Feature importance:</strong> A cross validated logistic regression is performed to rank the importance of each feature to distinguis clasical music historical periods.
-<img class="img-responsive center" src="/assets/img/relative_feature_importance.png" style="max-width: 80%;"></p>
+<h2><br></h2>
+<p><strong>Feature importance:</strong> A cross validated logistic regression is performed to rank the importance of each feature to distinguis clasical music historical periods.</p>
+<img class="img-responsive center" src="/assets/img/relative_feature_importance.png" style="max-width: 80%;">
