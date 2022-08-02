@@ -3,22 +3,22 @@ layout: default
 title: Pedro Ramoneda main page
 ---
 <header class="masthead d-flex">
-
     <div class="container text-center my-auto">
-        <h1 class="mb-1">Pedro Ramoneda</h1>
-        <h3 class="mb-5">
+        <h1 class="mb-1" style="color:white;">Pedro Ramoneda</h1>
+        <h3 class="mb-5" style="color:white;">
           <em>Bringing together Music Education and AI</em>
         </h3>
+        <div class="btn btn_red"><span class="icon"></span><a href="#about"><i style='font-size:48px;color:white' class='fas'>&#xf358;</i></a><span></span></div>
     </div>
     <div class="overlay"></div>
 </header>
 <body>
     <link rel="stylesheet" href="assets/css/index.css">
-    <button class="tablink" onclick="openPage('about', this, 'red')">About</button>
-    <button class="tablink" id="defaultOpen" onclick="openPage('papers', this, 'green')">Papers</button>
+    <button class="tablink" id="defaultOpen" onclick="openPage('about', this, 'red')">About</button>
+    <button class="tablink" onclick="openPage('papers', this, 'green')">Papers</button>
     <button class="tablink" onclick="openPage('teaching', this, 'blue')">Teaching & Talks</button>
     <button class="tablink" onclick="openPage('software', this, 'orange')">Software & Demos</button>
-
+    <div id="all_tabs">
     <div id="about" class="tabcontent">
       <div style="margin: 25px 15% 75px;">
           <h3>About</h3>
@@ -87,7 +87,7 @@ title: Pedro Ramoneda main page
              <p>Who we are and what we do.</p>
         </div>
     </div>
-
+    </div>
     <script type="text/javascript" src="assets/js/tabs.js"></script>
 </body>
 <footer class="footer text-center" style="background: white">
@@ -116,4 +116,5 @@ title: Pedro Ramoneda main page
         </ul>
         <p class="text-muted small mb-0">Copyright &copy;PRamoneda pramoneda.github.io 2021</p>
     </div>
+
 </footer>
