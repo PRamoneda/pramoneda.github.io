@@ -29,7 +29,25 @@
     <!-- Header -->
     {% include header.html %}
 
-    {{ content }}
+
+
+    <link rel="stylesheet" href="assets/css/index.css">
+    <button class="tablink" id="defaultOpen" onclick="openPage('about', this, 'red')">About</button>
+    <button class="tablink" onclick="openPage('papers', this, 'green')">Papers</button>
+    <button class="tablink" onclick="openPage('teaching', this, 'blue')">Teaching & Talks</button>
+    <button class="tablink" onclick="openPage('software', this, 'orange')">Software & Demos</button>
+    <div id="all_tabs">
+    {% include about.html %}
+
+    {% include papers.html papers=site.papers %}
+
+    {% include teaching.html %}
+
+    {% include software.html %}
+
+    </div>
+
+    <script type="text/javascript" src="assets/js/tabs.js"></script>
 
     <!-- Footer -->
     {% include footer.html %}
@@ -46,5 +64,33 @@
     <script src="https://pramoneda.github.io/assets/js/stylish-portfolio.min.js"></script>
     {% include google_analytics.html %}
 </body>
+<footer class="footer text-center" style="background: white">
+    <div class="container">
+        <ul class="list-inline mb-5">
+            <li class="list-inline-item">
+                <a class="social-link rounded-circle text-white mr-3" href="https://scholar.google.com/citations?user=ZzAI7jwAAAAJ&hl=es">
+              <i class="icon-social-google"></i>
+            </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="social-link rounded-circle text-white mr-3" href="https://twitter.com/PedroRamoneda">
+                    <i class="icon-social-twitter"></i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="social-link rounded-circle text-white mr-3" href="https://pramoneda.github.io/cv/Pedro_Ramoneda_RESUME.pdf">
+                    CV
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="social-link rounded-circle text-white" href="https://github.com/PRamoneda">
+              <i class="icon-social-github"></i>
+            </a>
+            </li>
+        </ul>
+        <p class="text-muted small mb-0">Copyright &copy;PRamoneda pramoneda.github.io 2021</p>
+    </div>
 
+
+</footer>
 </html>

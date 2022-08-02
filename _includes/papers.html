@@ -1,0 +1,15 @@
+<div id="papers" class="tabcontent">
+    <div style="margin: 25px 15% 75px;">
+        <h3>Papers</h3>
+        <div class="vtl">
+          {% for paper in include.papers %}
+          <div class="event">
+            <p class="txt"> {{paper.authors}} ({{paper.year}}). <a href="{{ paper.link }}"> {{paper.title}} </a>. {{paper.publication}}.</p>
+              {% for tag in paper.tags %}
+                <button type="button" href="{{tag.link}}">tag.name</button>
+              {% endfor %}
+          </div>
+          {% endfor %}
+        </div>
+    </div>
+</div>

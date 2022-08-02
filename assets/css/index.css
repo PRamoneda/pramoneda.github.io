@@ -45,16 +45,16 @@ body, html {
 .vtl, .vtl * { box-sizing: border-box; }
 
 /* (B) DRAW VERTICAL LINE USING ::BEFORE */
-.vtl::before {
-  /* (B1) VERTICAL LINE */
-  content: "";
-  width: 10px;
-  background-color: rgba(248, 245, 245, 1);
+/*.vtl::before {*/
+/*  !* (B1) VERTICAL LINE *!*/
+/*  content: "";*/
+/*  width: 10px;*/
+/*  background-color: rgba(248, 245, 245, 1);*/
 
-  /* (B2) POSITION TO THE LEFT */
-  position: absolute;
-  top: 0; bottom: 0; left: 15px;
-}
+/*  !* (B2) POSITION TO THE LEFT *!*/
+/*  position: absolute;*/
+/*  top: 0; bottom: 0; left: 15px;*/
+/*}*/
 
 /* (C) COSMETICS FOR EVENTS */
 div.event {
