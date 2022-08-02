@@ -19,10 +19,10 @@ description: Stylish Portfolio is a responsive, one page portfolio theme for Boo
 
 keywords: computational musicology, Music Information Retrieval
 
-baseurl: "https://pramoneda.github.io"
-url: "https://pramoneda.github.io"
+#baseurl: "https://pramoneda.github.io"
+#url: "https://pramoneda.github.io"
 
-github_username:  vidhyav656
+github_username:  PRamoneda
 google_analytics_tracking_id: UA-129738661-1
 # Build settings
 markdown: kramdown

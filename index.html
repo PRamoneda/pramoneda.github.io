@@ -3,6 +3,7 @@ layout: default
 title: Pedro Ramoneda main page
 ---
 <header class="masthead d-flex">
+
     <div class="container text-center my-auto">
         <h1 class="mb-1">Pedro Ramoneda</h1>
         <h3 class="mb-5">
@@ -11,3 +12,108 @@ title: Pedro Ramoneda main page
     </div>
     <div class="overlay"></div>
 </header>
+<body>
+    <link rel="stylesheet" href="assets/css/index.css">
+    <button class="tablink" onclick="openPage('about', this, 'red')">About</button>
+    <button class="tablink" id="defaultOpen" onclick="openPage('papers', this, 'green')">Papers</button>
+    <button class="tablink" onclick="openPage('teaching', this, 'blue')">Teaching & Talks</button>
+    <button class="tablink" onclick="openPage('software', this, 'orange')">Software & Demos</button>
+
+    <div id="about" class="tabcontent">
+      <div style="margin: 25px 15% 75px;">
+          <h3>About</h3>
+            <p style="float: left;width:220px;"><img src="assets/img/Pedro-Ramoneda.jpeg" height="200px" width="200px" ></p>
+              <p style="hyphens: auto">
+                Technology and music are my passions. It is my primary motivation to pursue research in sound and music
+                  computing and music information retrieval. I have previously researched on Harmony-related topics, and
+                  I am currently pursuing my PhD studies on the intersection between music performance and artificial intelligence
+                  at <a href="https://www.upf.edu/web/mtg"> Music Technology Group </a>, Universitat Pompeu Fabra, Barcelona.
+              </p>
+              <p style="hyphens: auto">
+                My PhD thesis, "Can I play it? Understanding piano performance difficulty through explainable and multimodal machine learning"  focuses on audio and symbolic music dataset creation and deep learning for performance difficulty
+                analysis under the supervision of <a href="https://mariusmiron.com/"> Dr. Marius Miron </a> and
+                <a href="https://www.upf.edu/web/xavier-serra"> Prof. Xavier Serra </a>. We aim to understand the performance
+                difficulty, through pedagogically motivated representations, to recommend a customised and optimised learning path
+                for each music student and allow musicians explore large music score collections. My ML research interests include explainable machine learning, generative models,
+                human-centered AI and curriculum learning.
+              </p>
+      </div>
+    </div>
+
+    <div id="papers" class="tabcontent">
+        <div style="margin: 25px 15% 75px;">
+            <h3>Papers</h3>
+            <div class="vtl">
+              <div class="event">
+                <p class="date">11 Mar 2237 12:34</p>
+                <p class="txt">Evil Cates invaded planet Doge.</p>
+
+                  <button type="button">PDF</button>
+                  <button type="button">Code</button>
+                  <button type="button">Demo</button>
+                  <button type="button">Dataset</button>
+                  <button type="button">Teaser</button>
+              </div>
+              <div class="event">
+                <p class="date">12 Mar 2237 14:23</p>
+                <p class="txt">Cates ate Doge food.</p>
+              </div>
+              <div class="event">
+                <p class="date">13 Mar 2237 20:12</p>
+                <p class="txt">Cates took over the Doge beds.</p>
+              </div>
+              <div class="event">
+                <p class="date">14 Mar 2237 08:11</p>
+                <p class="txt">Hoomans to the rescue.</p>
+              </div>
+              <div class="event">
+                <p class="date">15 Mar 2237 14:27</p>
+                <p class="txt">Evil cates gone. Victory for good boys and girls.</p>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="teaching" class="tabcontent">
+        <div style="margin: 25px 15% 75px;">
+          <h3>Teaching & Talks</h3>
+          <p>Get in touch, or swing by for a cup of coffee.</p>
+        </div>
+    </div>
+
+    <div id="software" class="tabcontent">
+        <div style="margin: 25px 15% 75px;">
+             <h3>Software Projects</h3>
+             <p>Who we are and what we do.</p>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="assets/js/tabs.js"></script>
+</body>
+<footer class="footer text-center" style="background: white">
+    <div class="container">
+        <ul class="list-inline mb-5">
+            <li class="list-inline-item">
+                <a class="social-link rounded-circle text-white mr-3" href="https://scholar.google.com/citations?user=ZzAI7jwAAAAJ&hl=es">
+              <i class="icon-social-google"></i>
+            </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="social-link rounded-circle text-white mr-3" href="https://twitter.com/PedroRamoneda">
+                    <i class="icon-social-twitter"></i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="social-link rounded-circle text-white mr-3" href="https://pramoneda.github.io/cv/Pedro_Ramoneda_RESUME.pdf">
+                    CV
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="social-link rounded-circle text-white" href="https://github.com/PRamoneda">
+              <i class="icon-social-github"></i>
+            </a>
+            </li>
+        </ul>
+        <p class="text-muted small mb-0">Copyright &copy;PRamoneda pramoneda.github.io 2021</p>
+    </div>
+</footer>

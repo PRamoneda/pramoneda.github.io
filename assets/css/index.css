@@ -1,0 +1,107 @@
+/* Set height of body and the document to 100% to enable "full page tabs" */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial;
+}
+
+/* Style tab links */
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  color: white;
+  display: none;
+  padding: 100px 20px;
+  height: 100%;
+}
+
+/*timeline*/
+/* (A) TIMELINE CONTAINER */
+.vtl {
+  /* (A1) RELATIVE POSITION REQUIRED TO PROPERLY POSITION THE TIMELINE */
+  position: relative;
+
+  /* (A2) RESERVE MORE SPACE TO THE LEFT FOR THE TIMELINE */
+  padding: 10px 10px 10px 50px;
+
+  /* (A3) OPTIONAL WIDTH RESTRICTION */
+  /*max-width: 400px;*/
+}
+.vtl, .vtl * { box-sizing: border-box; }
+
+/* (B) DRAW VERTICAL LINE USING ::BEFORE */
+.vtl::before {
+  /* (B1) VERTICAL LINE */
+  content: "";
+  width: 10px;
+  background-color: rgba(248, 245, 245, 1);
+
+  /* (B2) POSITION TO THE LEFT */
+  position: absolute;
+  top: 0; bottom: 0; left: 15px;
+}
+
+/* (C) COSMETICS FOR EVENTS */
+div.event {
+  padding: 20px 30px;
+  background-color: white;
+  position: relative;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+/* (D) COSMETICS FOR EVENT DATE & TEXT */
+p.date {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #ff6a00;
+}
+p.txt {
+  margin: 10px 0 0 0;
+  color: #222;
+}
+
+/* (E) EVENT "SPEECH BUBBLE CALLOUT" */
+div.event::before {
+  /* (E1) "MAGIC TRIANGLE" */
+  content: "";
+  border: 10px solid transparent;
+  border-right-color: #ffebeb;
+  border-left: 0;
+
+   /* (E2) POSITION TO THE LEFT */
+  position: absolute;
+  top: 20%; left: -10px;
+}
+
+/* (F) CIRCLE ON TIMELINE */
+div.event::after {
+  /* (F1) "MAGIC CIRCLE" */
+  content: "";
+  background: #fff;
+  border: 8px solid #DE421A;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+
+  /* (F2) POSITION TO THE LEFT */
+  position: absolute;
+  top: 20%;
+  left: -4.5%;
+}
+
