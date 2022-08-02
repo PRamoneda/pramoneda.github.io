@@ -6,7 +6,7 @@
           <div class="event">
             <p class="txt"> {{paper.authors}} ({{paper.year}}). <a href="{{ paper.link }}"> {{paper.title}} </a>. {{paper.publication}}.</p>
               {% for tag in paper.tags %}
-                <button type="button" href="{{tag.link}}">tag.name</button>
+                <a class="btn" href="{{tag.link}}">{{tag.name}}</a>
               {% endfor %}
           </div>
           {% endfor %}
