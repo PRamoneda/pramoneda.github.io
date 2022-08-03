@@ -53,7 +53,7 @@ papers:
     publication: "In ICASSP 2022 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)"
     tags:
       - name: "BibTeX"
-        link: "https://github.com/bib/ICASSP22.txt"
+        link: "https://pramoneda.github.io/bib/ICASSP22.txt"
       - name: "Arxiv"
         link: "https://arxiv.org/abs/2203.13010"
       - name: "Code"
@@ -68,10 +68,10 @@ papers:
     year: "2022"
     title: "Score difficulty analysis for piano performance education based on fingering"
     link: "https://doi.org/10.5220/0011137600003182"
-    publication: "In Proceedings of the 14th International Conference on Computer Supported Education, {CSEDU} 2022, Online Streaming, April 22-24, 2022, Volume 1"
+    publication: "In Proceedings of the 14th International Conference on Computer Supported Education (CSEDU)"
     tags:
       - name: "BibTeX"
-        link: "https://github.com/bib/CSEDU22.txt"
+        link: "https://pramoneda.github.io/bib/CSEDU22.txt"
       - name: "PDF"
         link: "https://doi.org/10.5220/0011137600003182"
   - authors: "Bernardes, G., Ramoneda, P. and Miron, M"
@@ -81,7 +81,7 @@ papers:
     publication: "In International Conference on Music Perception and Cognition (ICMPC16-ESCOM11)"
     tags:
       - name: "BibTeX"
-        link: "https://github.com/bib/ICMPC21.txt"
+        link: "https://pramoneda.github.io/bib/ICMPC21.txt"
       - name: "Pre-print"
         link: "https://www.researchgate.net/publication/350529696_Unveiling_High-level_Discriminant_Harmonic_Descriptors_of_Musical_Style_in_the_Tonal_Interval_Space"
       - name: "Supplementary Material"
@@ -93,7 +93,7 @@ papers:
     publication: "In CoRR"
     tags:
       - name: "BibTeX"
-        link: "https://github.com/bib/arxiv21.txt"
+        link: "https://pramoneda.github.io/bib/arxiv21.txt"
       - name: "Pre-print"
         link: "https://arxiv.org/abs/2111.08009"
       - name: "Code"
@@ -105,7 +105,7 @@ papers:
     publication: "In 149th AES convention, the Audio Engineering Society"
     tags:
       - name: "BibTeX"
-        link: "https://github.com/bib/AES2020.txt"
+        link: "https://pramoneda.github.io/bib/AES2020.txt"
       - name: "Pre-print"
         link: "https://www.researchgate.net/publication/342563614_Revisiting_Harmonic_Change_Detection"
       - name: "Code"
