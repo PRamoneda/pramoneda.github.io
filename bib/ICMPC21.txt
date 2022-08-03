@@ -1,0 +1,8 @@
+@inproceedings{bernardes2021unveilling,
+  title={Unveiling High-level Discriminant Harmonic Descriptors of Musical Style in the Tonal Interval Space},
+  author={Bernardes,Gilberto and Ramoneda, Pedro and Miron, Marius},
+  booktitle={Conference: International Conference on Music Perception and Cognition (ICMPC16-ESCOM11)},
+  address={Azerbaijan, Australia, Colombia, India, Mexico, Lithuania, Poland, UK, South Africa},
+  organization={ICMPC-ESCOM 2021},
+  year={2021}
+}

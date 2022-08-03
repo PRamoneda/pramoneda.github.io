@@ -1,0 +1,12 @@
+@article{ramoneda2021reinforcement,
+  author    = {Pedro Ramoneda and
+               Marius Miron and
+               Xavier Serra},
+  title     = {Piano Fingering with Reinforcement Learning},
+  journal   = {CoRR},
+  volume    = {abs/2111.08009},
+  year      = {2021},
+  url       = {https://arxiv.org/abs/2111.08009},
+  eprinttype = {arXiv},
+  eprint    = {2111.08009}
+}

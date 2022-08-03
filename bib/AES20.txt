@@ -1,0 +1,8 @@
+@inproceedings{ramoneda2020revisiting_true,
+    author={Ramoneda, P. and Bernardes, G.},
+    booktitle={149th AES convention, the Audio Engineering Society},
+    series={AES149},
+    title={Revisiting Harmonic Change Detection},
+    year={2020},
+    month={October},
+}
