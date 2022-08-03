@@ -10,6 +10,7 @@ function openPage(pageName, elmnt, color) {
   tablinks = document.getElementsByClassName("tablink");
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].style.backgroundColor = "";
+    tablinks[i].style.color = "white";
   }
 
   // Show the specific tab content
@@ -19,6 +20,7 @@ function openPage(pageName, elmnt, color) {
 
   // Add the specific color to the button used to open the tab content
   elmnt.style.backgroundColor = color;
+  elmnt.style.color = 'black';
 }
 
 // Get the element with id="defaultOpen" and click on it
