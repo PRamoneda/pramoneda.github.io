@@ -32,10 +32,14 @@
 
 
     <link rel="stylesheet" href="assets/css/index.css">
-    <button class="tablink" id="defaultOpen" onclick="openPage('about', this, '#faf3dd')">About</button>
-    <button class="tablink" onclick="openPage('papers', this, '#ffa69e')">Papers</button>
-    <button class="tablink" onclick="openPage('teaching', this, '#b8f2e6')">Teaching & Talks</button>
-    <button class="tablink" onclick="openPage('software', this, '#aed9e0')">Software & Demos</button>
+<!--    <button class="tablink" id="defaultOpen" onclick="openPage('about', this, '#faf3dd')">About</button>-->
+<!--    <button class="tablink" onclick="openPage('papers', this, '#ffa69e')">Papers</button>-->
+<!--    <button class="tablink" onclick="openPage('teaching', this, '#b8f2e6')">Teaching & Talks</button>-->
+<!--    <button class="tablink" onclick="openPage('software', this, '#aed9e0')">Software & Demos</button>-->
+    <button class="tablink" id="defaultOpen" onclick="openPage('about', this, 'white')">About</button>
+    <button class="tablink" onclick="openPage('papers', this, 'white')">Papers</button>
+    <button class="tablink" onclick="openPage('teaching', this, 'white')">Teaching & Talks</button>
+    <button class="tablink" onclick="openPage('software', this, 'white')">Software & Demos</button>
     <div id="all_tabs">
     {% include about.html %}
 
@@ -68,22 +72,22 @@
     <div class="container">
         <ul class="list-inline mb-5">
             <li class="list-inline-item">
-                <a class="social-link rounded-circle text-white mr-3" href="https://scholar.google.com/citations?user=ZzAI7jwAAAAJ&hl=es">
+                <a class="social-link rounded-circle text-white mr-3" style="background-color: #5e6472" href="https://scholar.google.com/citations?user=ZzAI7jwAAAAJ&hl=es">
                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                 </a>
             </li>
             <li class="list-inline-item">
-                <a class="social-link rounded-circle text-white mr-3" href="https://twitter.com/PedroRamoneda">
+                <a class="social-link rounded-circle text-white mr-3"  style="background-color: #5e6472" href="https://twitter.com/PedroRamoneda">
                     <i class="icon-social-twitter"></i>
                 </a>
             </li>
             <li class="list-inline-item">
-                <a class="social-link rounded-circle text-white mr-3" href="https://pramoneda.github.io/cv/Pedro_Ramoneda_RESUME.pdf">
+                <a class="social-link rounded-circle text-white mr-3" style="background-color: #5e6472" href="https://pramoneda.github.io/cv/Pedro_Ramoneda_RESUME.pdf">
                     CV
                 </a>
             </li>
             <li class="list-inline-item">
-                <a class="social-link rounded-circle text-white" href="https://github.com/PRamoneda">
+                <a class="social-link rounded-circle text-white" style="background-color: #5e6472" href="https://github.com/PRamoneda">
               <i class="icon-social-github"></i>
             </a>
             </li>

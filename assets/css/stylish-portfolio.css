@@ -295,7 +295,7 @@ h6 {
     clip-path: inset(2rem);
   }
   .portfolio-item:hover .caption {
-    background-color: rgba(29, 128, 159, 0.9);
+    background-color: rgb(94, 100, 114);
     -webkit-clip-path: inset(2rem);
     clip-path: inset(2rem);
   }
@@ -320,7 +320,7 @@ footer.footer .social-link {
 }
 
 footer.footer .social-link:hover {
-  background-color: #000000;
+  background-color: #5e6472;
   text-decoration: none;
 }
 
