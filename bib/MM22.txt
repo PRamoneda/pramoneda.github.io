@@ -1,4 +1,4 @@
-@proceedings{acm,
+@inproceedings{ramoneda2022automatic,
   booktitle = {{MM} '22: The 30th {ACM} International Conference on Multimedia, Lisboa, Portugal, October 10-14, 2022},
   publisher = {{ACM}},
   year      = {2021},
