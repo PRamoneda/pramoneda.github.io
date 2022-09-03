@@ -1,0 +1,7 @@
+@proceedings{acm,
+  booktitle = {{MM} '22: The 30th {ACM} International Conference on Multimedia, Lisboa, Portugal, October 10-14, 2022},
+  publisher = {{ACM}},
+  year      = {2021},
+  title     = {Automatic Piano Fingering from Partially Annotated Scores using Autoregressive Neural Networks},
+  author    = {Pedro Ramoneda, Dasaem Jeong, Eita Nakamura, Xavier Serra, and Marius Miron}
+}
