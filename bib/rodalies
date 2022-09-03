@@ -1,0 +1,6 @@
+@inproceedings{rodalies,
+  booktitle = {Manuscript to be submitted},
+  year      = {2022},
+  title     = {Rodalies Dataset: A dataset for piano score difficulty analysis},
+  author    = {P. Ramoneda, V. Eremenko, D. Jeong, N. Can Tamer, X. Serra and M. Miron}
+}
