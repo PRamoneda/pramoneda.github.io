@@ -1,0 +1,10 @@
+@inproceedings{nazif2022,
+  author    = {Nazif Can Tamer and
+               Pedro Ramoneda and
+               Xavier Serra},
+  title     = {Violin Etudes: A Comprehensive Dataset for F0 Estimation and Performance Analysis},
+  booktitle = {Proceedings of the 21th International Society for Music Information
+               Retrieval Conference, {ISMIR} 2022, Bengaluru, India},
+  pages     = {483--490},
+  year      = {2022},
+}
