@@ -46,6 +46,32 @@ incremental: true
 include: ['.htaccess']
 
 papers:
+  - authors: "N. C. Tamer, P. Ramoneda, and X. Serra"
+    year: "2022"
+    title: "Violin Etudes: A comprehensive Dataset for f0 Estimation and Performance Analysis "
+    link: "https://repositori.upf.edu/bitstream/handle/10230/54154/Tamer_ismir_viol.pdf?sequence=1&isAllowed=y"
+    publication: "In Proc. of the 23rd Int. Society for Music Information Retrieval Conf. (ISMIR)"
+    tags:
+      - name: "Code"
+        link: "https://github.com/PRamoneda/Automatic-Piano-Fingering"
+      - name: "Paper"
+        link: "https://repositori.upf.edu/bitstream/handle/10230/54154/Tamer_ismir_viol.pdf?sequence=1&isAllowed=y"
+      - name: "Dataset"
+        link: "https://doi.org/10.5281/zenodo.6564408"
+  - authors: "Pedro Ramoneda, Dasaem Jeong, Eita Nakamura, Xavier Serra, and Marius Miron"
+    year: "2022"
+    title: "Automatic Piano Fingering from Partially Annotated Scores using Autoregressive Neural Networks"
+    link: "https://ieeexplore.ieee.org/document/9747223/"
+    publication: "In Proceedings of the 30th ACM International Conference on Multimedia (MM ’22), October 10–14, 2022, Lisboa, Portugal."
+    tags:
+      - name: "Code"
+        link: "https://github.com/PRamoneda/Automatic-Piano-Fingering"
+      - name: "Paper"
+        link: "https://repositori.upf.edu/bitstream/handle/10230/54308/Ramoneda_acm_auto.pdf?sequence=1&isAllowed=y"
+      - name: "Dataset"
+        link: "https://zenodo.org/records/6433702"
+      - name: "Demo"
+        link: "https://musiccritic.upf.edu/apf_acm"
   - authors: "Ramoneda, P., Tamer, N. C., Eremenko, V., Miron, M. & Serra, X"
     year: "2022"
     title: "Score difficulty analysis for piano performance education based on fingering"
