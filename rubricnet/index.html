@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RubricNet Research Companion Site</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script>
+        // Initialize a variable to store the JSON data
+    let cipiIndex = {};
+
+    // Function to load JSON data from a file
+    function loadJsonData() {
+        fetch('cipi/index.json')
+            .then(response => response.json())
+            .then(data => {
+                cipiIndex = data; // Store the data for later use
+            })
+            .catch(error => console.error('Error loading the JSON file:', error));
+    }
+
+    // Call the function to load data on page load
+    loadJsonData();
+    function updateImageList() {
+        var folder = document.getElementById("folderSelect").value;
+        var imageSelect = document.getElementById("imageSelect");
+        var dataset = document.getElementById("datasetSelect").value;
+
+        // Clear existing options
+        imageSelect.innerHTML = '';
+        // Fetch image list based on the folder
+        // This is a placeholder for actual fetch code, which might involve fetching data from a server
+        var cipi0 = ["c-186_table.png","c-198_table.png","c-199_table.png","c-202_table.png","c-203_table.png","c-207_table.png","c-208_table.png","c-211_table.png","c-212_table.png","c-224_table.png","c-227_table.png","c-228_table.png","c-22_table.png","c-231_table.png","c-232_table.png","c-235_table.png","c-23_table.png","c-244_table.png","c-256_table.png","c-261_table.png","c-262_table.png","c-264_table.png","c-268_table.png","c-276_table.png","c-286_table.png","c-288_table.png","c-290_table.png","c-291_table.png","c-300_table.png","c-305_table.png","c-306_table.png","c-309_table.png","c-310_table.png","c-313_table.png","c-316_table.png","c-317_table.png","c-325_table.png","c-338_table.png","c-348_table.png","c-352_table.png","c-356_table.png","c-362_table.png","c-378_table.png","c-3_table.png","m-12_table.png","m-17_table.png","m-29_table.png","m-32_table.png","m-54_table.png","m-65_table.png","m-67_table.png","x-103_table.png","x-104_table.png","x-107_table.png","x-109_table.png","x-113_table.png","x-117_table.png","x-118_table.png","x-120_table.png","x-122_table.png","x-128_table.png","x-12_table.png","x-139_table.png","x-13_table.png","x-140_table.png","x-143_table.png","x-149_table.png","x-151_table.png","x-152_table.png","x-169_table.png","x-171_table.png","x-179_table.png","x-185_table.png","x-191_table.png","x-195_table.png","x-199_table.png","x-205_table.png","x-212_table.png","x-220_table.png","x-227_table.png","x-235_table.png","x-244_table.png","x-252_table.png","x-255_table.png","x-25_table.png","x-262_table.png","x-276_table.png","x-277_table.png","x-278_table.png","x-280_table.png","x-282_table.png","x-283_table.png","x-286_table.png","x-290_table.png","x-302_table.png","x-310_table.png","x-321_table.png","x-323_table.png","x-334_table.png","x-339_table.png","x-347_table.png","x-349_table.png","x-354_table.png","x-365_table.png","x-369_table.png","x-371_table.png","x-372_table.png","x-37_table.png","x-384_table.png","x-385_table.png","x-387_table.png","x-388_table.png","x-400_table.png","x-40_table.png","x-46_table.png","x-47_table.png","x-48_table.png","x-51_table.png","x-54_table.png","x-58_table.png","x-59_table.png","x-5_table.png","x-60_table.png","x-63_table.png","x-74_table.png","x-79_table.png","x-82_table.png","x-84_table.png","x-88_table.png","x-8_table.png","x-97_table.png","x-99_table.png"];
+        var cipi1 = ["c-11_table.png","c-188_table.png","c-18_table.png","c-191_table.png","c-196_table.png","c-208_table.png","c-222_table.png","c-224_table.png","c-232_table.png","c-237_table.png","c-246_table.png","c-255_table.png","c-259_table.png","c-262_table.png","c-264_table.png","c-280_table.png","c-283_table.png","c-28_table.png","c-290_table.png","c-298_table.png","c-2_table.png","c-303_table.png","c-30_table.png","c-311_table.png","c-316_table.png","c-319_table.png","c-321_table.png","c-32_table.png","c-334_table.png","c-341_table.png","c-352_table.png","c-353_table.png","c-362_table.png","c-363_table.png","c-367_table.png","c-378_table.png","c-5_table.png","m-115_table.png","m-12_table.png","m-18_table.png","m-22_table.png","m-30_table.png","m-69_table.png","x-110_table.png","x-115_table.png","x-126_table.png","x-127_table.png","x-129_table.png","x-130_table.png","x-133_table.png","x-135_table.png","x-141_table.png","x-146_table.png","x-151_table.png","x-158_table.png","x-161_table.png","x-172_table.png","x-175_table.png","x-177_table.png","x-178_table.png","x-179_table.png","x-17_table.png","x-189_table.png","x-195_table.png","x-197_table.png","x-198_table.png","x-1_table.png","x-200_table.png","x-20_table.png","x-21_table.png","x-227_table.png","x-22_table.png","x-237_table.png","x-242_table.png","x-248_table.png","x-24_table.png","x-250_table.png","x-261_table.png","x-262_table.png","x-264_table.png","x-275_table.png","x-27_table.png","x-284_table.png","x-285_table.png","x-28_table.png","x-290_table.png","x-292_table.png","x-295_table.png","x-29_table.png","x-305_table.png","x-306_table.png","x-30_table.png","x-310_table.png","x-318_table.png","x-326_table.png","x-340_table.png","x-341_table.png","x-343_table.png","x-347_table.png","x-348_table.png","x-352_table.png","x-355_table.png","x-358_table.png","x-363_table.png","x-366_table.png","x-368_table.png","x-36_table.png","x-371_table.png","x-375_table.png","x-377_table.png","x-379_table.png","x-380_table.png","x-389_table.png","x-391_table.png","x-393_table.png","x-400_table.png","x-401_table.png","x-48_table.png","x-50_table.png","x-52_table.png","x-64_table.png","x-66_table.png","x-74_table.png","x-75_table.png","x-78_table.png","x-81_table.png","x-84_table.png","x-85_table.png","x-86_table.png","x-91_table.png","x-97_table.png","x-99_table.png"];
+        var cipi2 = ["c-11_table.png","c-15_table.png","c-186_table.png","c-192_table.png","c-198_table.png","c-199_table.png","c-19_table.png","c-205_table.png","c-211_table.png","c-213_table.png","c-214_table.png","c-216_table.png","c-223_table.png","c-226_table.png","c-22_table.png","c-231_table.png","c-235_table.png","c-239_table.png","c-23_table.png","c-240_table.png","c-248_table.png","c-255_table.png","c-262_table.png","c-274_table.png","c-276_table.png","c-278_table.png","c-286_table.png","c-298_table.png","c-300_table.png","c-302_table.png","c-303_table.png","c-305_table.png","c-308_table.png","c-309_table.png","c-30_table.png","c-312_table.png","c-313_table.png","c-319_table.png","c-321_table.png","c-329_table.png","c-335_table.png","c-339_table.png","c-355_table.png","c-361_table.png","c-367_table.png","c-373_table.png","c-374_table.png","c-375_table.png","m-115_table.png","m-67_table.png","x-108_table.png","x-112_table.png","x-116_table.png","x-119_table.png","x-125_table.png","x-126_table.png","x-129_table.png","x-12_table.png","x-138_table.png","x-143_table.png","x-144_table.png","x-150_table.png","x-156_table.png","x-162_table.png","x-164_table.png","x-169_table.png","x-179_table.png","x-185_table.png","x-18_table.png","x-195_table.png","x-197_table.png","x-1_table.png","x-202_table.png","x-205_table.png","x-215_table.png","x-217_table.png","x-21_table.png","x-220_table.png","x-230_table.png","x-232_table.png","x-233_table.png","x-242_table.png","x-246_table.png","x-248_table.png","x-257_table.png","x-258_table.png","x-262_table.png","x-266_table.png","x-269_table.png","x-270_table.png","x-271_table.png","x-276_table.png","x-27_table.png","x-29_table.png","x-315_table.png","x-319_table.png","x-31_table.png","x-326_table.png","x-335_table.png","x-337_table.png","x-338_table.png","x-343_table.png","x-345_table.png","x-351_table.png","x-358_table.png","x-360_table.png","x-366_table.png","x-367_table.png","x-369_table.png","x-376_table.png","x-379_table.png","x-382_table.png","x-383_table.png","x-384_table.png","x-393_table.png","x-401_table.png","x-402_table.png","x-44_table.png","x-4_table.png","x-50_table.png","x-51_table.png","x-52_table.png","x-55_table.png","x-56_table.png","x-5_table.png","x-62_table.png","x-65_table.png","x-69_table.png","x-71_table.png","x-73_table.png","x-78_table.png","x-82_table.png"];
+        var cipi3 = ["c-10_table.png","c-11_table.png","c-180_table.png","c-188_table.png","c-190_table.png","c-193_table.png","c-196_table.png","c-197_table.png","c-199_table.png","c-201_table.png","c-20_table.png","c-212_table.png","c-215_table.png","c-224_table.png","c-230_table.png","c-240_table.png","c-245_table.png","c-248_table.png","c-252_table.png","c-255_table.png","c-259_table.png","c-261_table.png","c-262_table.png","c-268_table.png","c-271_table.png","c-276_table.png","c-286_table.png","c-292_table.png","c-294_table.png","c-297_table.png","c-298_table.png","c-299_table.png","c-302_table.png","c-310_table.png","c-313_table.png","c-314_table.png","c-316_table.png","c-317_table.png","c-330_table.png","c-335_table.png","c-347_table.png","c-350_table.png","c-351_table.png","c-352_table.png","c-363_table.png","c-367_table.png","c-368_table.png","c-369_table.png","c-370_table.png","c-3_table.png","m-16_table.png","m-17_table.png","x-101_table.png","x-107_table.png","x-108_table.png","x-114_table.png","x-118_table.png","x-11_table.png","x-127_table.png","x-128_table.png","x-136_table.png","x-138_table.png","x-139_table.png","x-141_table.png","x-142_table.png","x-145_table.png","x-149_table.png","x-14_table.png","x-150_table.png","x-153_table.png","x-162_table.png","x-168_table.png","x-16_table.png","x-171_table.png","x-172_table.png","x-183_table.png","x-193_table.png","x-200_table.png","x-201_table.png","x-206_table.png","x-208_table.png","x-20_table.png","x-211_table.png","x-216_table.png","x-219_table.png","x-225_table.png","x-232_table.png","x-248_table.png","x-251_table.png","x-255_table.png","x-258_table.png","x-25_table.png","x-268_table.png","x-26_table.png","x-271_table.png","x-284_table.png","x-286_table.png","x-290_table.png","x-29_table.png","x-301_table.png","x-306_table.png","x-308_table.png","x-30_table.png","x-323_table.png","x-325_table.png","x-326_table.png","x-327_table.png","x-329_table.png","x-331_table.png","x-335_table.png","x-338_table.png","x-339_table.png","x-348_table.png","x-353_table.png","x-359_table.png","x-35_table.png","x-362_table.png","x-375_table.png","x-385_table.png","x-390_table.png","x-394_table.png","x-397_table.png","x-40_table.png","x-43_table.png","x-61_table.png","x-62_table.png","x-63_table.png","x-6_table.png","x-74_table.png","x-81_table.png","x-84_table.png","x-92_table.png","x-96_table.png"];
+        var cipi4 = ["c-16_table.png","c-187_table.png","c-18_table.png","c-192_table.png","c-200_table.png","c-211_table.png","c-215_table.png","c-216_table.png","c-223_table.png","c-227_table.png","c-229_table.png","c-230_table.png","c-233_table.png","c-235_table.png","c-239_table.png","c-241_table.png","c-246_table.png","c-254_table.png","c-263_table.png","c-269_table.png","c-271_table.png","c-274_table.png","c-295_table.png","c-297_table.png","c-304_table.png","c-308_table.png","c-309_table.png","c-314_table.png","c-316_table.png","c-32_table.png","c-337_table.png","c-338_table.png","c-340_table.png","c-341_table.png","c-347_table.png","c-352_table.png","c-356_table.png","c-362_table.png","c-369_table.png","c-376_table.png","c-8_table.png","m-27_table.png","x-104_table.png","x-108_table.png","x-11_table.png","x-124_table.png","x-129_table.png","x-130_table.png","x-133_table.png","x-134_table.png","x-139_table.png","x-140_table.png","x-141_table.png","x-144_table.png","x-147_table.png","x-152_table.png","x-157_table.png","x-159_table.png","x-163_table.png","x-165_table.png","x-172_table.png","x-174_table.png","x-178_table.png","x-180_table.png","x-183_table.png","x-184_table.png","x-185_table.png","x-187_table.png","x-193_table.png","x-196_table.png","x-1_table.png","x-201_table.png","x-215_table.png","x-21_table.png","x-220_table.png","x-221_table.png","x-223_table.png","x-225_table.png","x-230_table.png","x-236_table.png","x-241_table.png","x-253_table.png","x-258_table.png","x-260_table.png","x-266_table.png","x-26_table.png","x-274_table.png","x-276_table.png","x-282_table.png","x-284_table.png","x-298_table.png","x-299_table.png","x-302_table.png","x-305_table.png","x-308_table.png","x-314_table.png","x-324_table.png","x-331_table.png","x-332_table.png","x-336_table.png","x-339_table.png","x-34_table.png","x-359_table.png","x-362_table.png","x-366_table.png","x-367_table.png","x-369_table.png","x-36_table.png","x-373_table.png","x-376_table.png","x-378_table.png","x-381_table.png","x-384_table.png","x-390_table.png","x-392_table.png","x-393_table.png","x-3_table.png","x-401_table.png","x-45_table.png","x-46_table.png","x-49_table.png","x-53_table.png","x-57_table.png","x-59_table.png","x-6_table.png","x-70_table.png","x-7_table.png","x-81_table.png","x-82_table.png","x-95_table.png","x-96_table.png"];
+        var mk0 = ["100_table.png","105_table.png","10_table.png","110_table.png","115_table.png","120_table.png","125_table.png","130_table.png","135_table.png","140_table.png","145_table.png","150_table.png","15_table.png","20_table.png","25_table.png","30_table.png","35_table.png","40_table.png","45_table.png","50_table.png","5_table.png","60_table.png","70_table.png","75_table.png","80_table.png","85_table.png","90_table.png","95_table.png"];
+        var mk1 = ["101_table.png","106_table.png","111_table.png","116_table.png","11_table.png","121_table.png","126_table.png","131_table.png","136_table.png","141_table.png","146_table.png","151_table.png","16_table.png","1_table.png","21_table.png","26_table.png","31_table.png","36_table.png","41_table.png","46_table.png","51_table.png","56_table.png","61_table.png","66_table.png","6_table.png","71_table.png","76_table.png","81_table.png","86_table.png","91_table.png","96_table.png"];
+        var mk2 = ["102_table.png","107_table.png","112_table.png","117_table.png","122_table.png","12_table.png","132_table.png","137_table.png","142_table.png","147_table.png","152_table.png","17_table.png","22_table.png","27_table.png","2_table.png","32_table.png","37_table.png","42_table.png","47_table.png","52_table.png","57_table.png","62_table.png","67_table.png","72_table.png","77_table.png","7_table.png","82_table.png","87_table.png","92_table.png","97_table.png"]
+        var mk3 = ["103_table.png","108_table.png","113_table.png","118_table.png","123_table.png","128_table.png","133_table.png","138_table.png","13_table.png","143_table.png","148_table.png","153_table.png","18_table.png","23_table.png","28_table.png","33_table.png","38_table.png","3_table.png","48_table.png","53_table.png","58_table.png","63_table.png","73_table.png","78_table.png","83_table.png","88_table.png","8_table.png","93_table.png","98_table.png"];
+        var mk4 = ["104_table.png","109_table.png","114_table.png","119_table.png","124_table.png","129_table.png","134_table.png","139_table.png","144_table.png","149_table.png","14_table.png","19_table.png","24_table.png","29_table.png","34_table.png","39_table.png","49_table.png","4_table.png","54_table.png","59_table.png","64_table.png","69_table.png","74_table.png","79_table.png","84_table.png","89_table.png","94_table.png","99_table.png","9_table.png"];
+        // Populate dropdown with new options
+        if (dataset == "cipi") {
+            if (folder == "0") {
+                var images = cipi0;
+            } else if (folder == "1") {
+                var images = cipi1;
+            } else if (folder == "2") {
+                var images = cipi2;
+            } else if (folder == "3") {
+                var images = cipi3;
+            } else if (folder == "4") {
+                var images = cipi4;
+            } else {
+                var images = cipi0;
+            }
+        } else if (dataset == "mkd") {
+            if (folder == "0") {
+                var images = mk0;
+            } else if (folder == "1") {
+                var images = mk1;
+            } else if (folder == "2") {
+                var images = mk2;
+            } else if (folder == "3") {
+                var images = mk3;
+            } else if (folder == "4") {
+                var images = mk4;
+            } else {
+                var images = mk0;
+            }
+        }
+
+        images.forEach(function(image) {
+            var option = new Option(image, image);
+            imageSelect.add(option);
+        });
+
+
+        // Automatically display the first image
+        if(images.length > 0) {
+            displayImage();
+        }
+    }
+
+
+    function displayImage() {
+        var imagePath = document.getElementById("imageSelect").value;
+        var folder = document.getElementById("folderSelect").value;
+        var dataset = document.getElementById("datasetSelect").value;
+
+        // Update image sources
+        document.getElementById("plotlyDisplay").src = './' + dataset + '/explorer_score_' + folder + '.html';
+        document.getElementById("equivalenceDisplay").src = './' + dataset + '/boundaries-' + folder + '.png';
+        document.getElementById("imageDisplay").src = './' + dataset + '/' + folder + '/' + imagePath;
+
+        // Get index from imagePath assuming the file extension is 10 characters long
+        var idx = imagePath.slice(0, -10);
+
+        var metadataDisplay = document.getElementById("metadataDisplay");
+        var youtubeSearchUrl;
+
+        if (dataset === "cipi") {
+            var metadata = cipiIndex[idx];
+
+            var encodedWorkName = encodeURIComponent(metadata.composer + ' ' + metadata.work_name);
+            youtubeSearchUrl = `https://www.youtube.com/results?search_query=${encodedWorkName}`;
+            metadataDisplay.innerHTML = `<strong>Composer:</strong> ${metadata.composer}<br>
+                                         <strong>Book:</strong> ${metadata.book}<br>
+                                         <strong>Work Name:</strong> ${metadata.work_name}<br>
+                                         <strong>Level:</strong> ${metadata.henle}<br>
+                                         <button onclick="window.open('${youtubeSearchUrl}', '_blank')" class="youtube-button">
+                                             <i class="fab fa-youtube"></i> Search this piece on YouTube
+                                         </button>`;
+
+        } else if (dataset === "mkd") {
+            var level;
+            if (idx >= 1 && idx <= 66) {
+                level = 1;
+            } else if (idx >= 67 && idx <= 121) {
+                level = 2;
+            } else {
+                level = 3;
+            }
+
+            youtubeSearchUrl = `https://www.youtube.com/results?search_query=Bela Bartok Mikrokosmos No. ${idx}`;
+            metadataDisplay.innerHTML = `<strong>Composer:</strong> Bela Bartok<br>
+                                         <strong>Book:</strong> Mikrokosmos<br>
+                                         <strong>Work Name:</strong> No. ${idx}<br>
+                                         <strong>Level:</strong> ${level}<br>
+                                         <button onclick="window.open('${youtubeSearchUrl}', '_blank')" class="youtube-button">
+                                             <i class="fab fa-youtube"></i> Search this piece on YouTube
+                                         </button>`;
+        }
+    }
+
+
+    // Initialize the image list on first load
+    document.addEventListener('DOMContentLoaded', updateImageList);
+
+    </script>
+
+
+    <style>
+        body {
+            margin-left: 15%;
+            margin-right: 15%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Towards Explainable and Interpretable Musical Difficulty Estimation</h1>
+    <p>Welcome to the companion website for our paper submitted for review at the 25th International Society for Music Information Retrieval Conference, 2024, in San Francisco, USA. This site is dedicated to extending our work on a parameter-efficient approach to musical difficulty estimation, allowing for exploration and interaction!!</p>
+
+    <p>Thank you for your interest in our work!</p>
+    <div class="container mt-5">
+        <div class="row g-3 align-items-center">
+            <div class="col-md-4">
+                <label for="datasetSelect" class="form-label">Choose a Dataset:</label>
+            </div>
+            <div class="col-md-8">
+                <select id="datasetSelect" class="form-select" onchange="updateImageList()">
+                    <option value="cipi" selected>CIPI</option>
+                    <option value="mkd">MKD</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="folderSelect" class="form-label">Choose a Split:</label>
+            </div>
+
+            <div class="col-md-8">
+                <select id="folderSelect" class="form-select" onchange="updateImageList()">
+                    <option value="0" selected>SPLIT 0</option>
+                    <option value="1">SPLIT 1</option>
+                    <option value="2">SPLIT 2</option>
+                    <option value="3">SPLIT 3</option>
+                    <option value="4">SPLIT 4</option>
+                </select>
+            </div>
+            <h5> You can explore the scores distribution across the grades!! (click on each feature in the interactive plot) </h5>
+            <iframe id="plotlyDisplay" src="cipi/explorer_score_0.html" style="width:100%; height:500px;"></iframe>
+
+            <div class="col-md-4">
+                <label for="imageSelect" class="form-label">Choose a piece by id (you can find an id with the figure above):</label>
+            </div>
+            <div class="col-md-8">
+                <select id="imageSelect" class="form-select" onchange="displayImage()">
+                    <!-- Options will be dynamically added here -->
+                </select>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+    <div id="metadataDisplay"><strong>Composer:</strong> WOLFGANG AMADEUS MOZART<br>
+                                         <strong>Book:</strong> "Wunderkind" Sonatas Volume I K. 6-9<br>
+                                         <strong>Work Name:</strong> Piano Sonata (Wunderkind) G major KV 9<br>
+                                         <strong>Level:</strong> 4<br>
+            <button onclick="window.open('https://www.youtube.com/results?search_query=WOLFGANG%20AMADEUS%20MOZART Piano%20Sonata%20(Wunderkind)%20G%20major%20KV%209', '_blank')" class="youtube-button">
+                                                               <i class="fab fa-youtube"></i> Search this piece on YouTube
+            </button>
+    </div>
+    <br><br><br>
+    <img id="imageDisplay" src="/cipi/0/c-186_table.png" alt="Selected Image" style="max-width:100%;">
+    <img id="equivalenceDisplay" src="/cipi/boundaries-0.png" alt="Selected Image" style="max-width:100%;">
+
+</body>
+
+</html>
