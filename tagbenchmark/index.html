@@ -71,7 +71,7 @@
         <select id="sort">
           <option value="original">Original order</option>
           <option value="alpha">Alphabetical</option>
-          <option value="mean">By mean MAP of selected models (desc)</option>
+          <option value="mean">By mean of selected models (desc)</option>
         </select>
       </div>
       <div class="row">
@@ -120,6 +120,13 @@
     let DATA = null;        // { rows: string[], columns: string[], values: (number|null)[][] }
     let originalIdx = [];   // row indices [0..n-1] in the dataset original order
     let filteredIdx = [];   // current row indices after filter + sort + feature selection
+
+    // Per-dataset rendering settings
+    let DS_MIN = null;
+    let DS_MAX = null;
+    let DS_COLOR = "Viridis";
+    let DS_REVERSE = false;
+    let DS_METRIC = "MAP";
 
     function absUrl(path) {
       try { return new URL(path, window.location.href).href; }
@@ -212,6 +219,21 @@
       return means;
     }
 
+    function datasetMinMax() {
+      let minV = Infinity;
+      let maxV = -Infinity;
+      for (const row of DATA.values) {
+        for (const v of row) {
+          if (v === null || Number.isNaN(v)) continue;
+          if (v < minV) minV = v;
+          if (v > maxV) maxV = v;
+        }
+      }
+      if (!Number.isFinite(minV)) minV = 0;
+      if (!Number.isFinite(maxV)) maxV = 1;
+      return { min: minV, max: maxV };
+    }
+
     function applyFilterSortAndSelection() {
       const q = searchEl.value.trim().toLowerCase();
       const featureSet = selectedFeatureIndexSet();
@@ -263,17 +285,18 @@
       const traceType = useGL ? "heatmapgl" : "heatmap";
 
       const trace = {
-        type: traceType,
-        z: z,
-        x: x,
-        y: y,
-        colorscale: "Viridis",
-        zmin: 0,
-        zmax: 1,
-        colorbar: { title: "MAP" },
-        hoverongaps: false,
-        hovertemplate: "Feature: %{y}<br>Model: %{x}<br>MAP: %{z:.3f}<extra></extra>"
-      };
+          type: traceType,
+          z: z,
+          x: x,
+          y: y,
+          colorscale: DS_COLOR,
+          reversescale: DS_REVERSE,
+          zmin: DS_MIN,
+          zmax: DS_MAX,
+          colorbar: { title: DS_METRIC },
+          hoverongaps: false,
+          hovertemplate: "Feature: %{y}<br>Model: %{x}<br>" + DS_METRIC + ": %{z:.3f}<extra></extra>"
+        };
 
       const layout = {
         margin: { l: 260, r: 10, t: 20, b: 80 },
@@ -338,13 +361,57 @@
         // Enforce desired column order
         reorderColumnsToDesiredOrder(DATA);
         originalIdx = DATA.rows.map((_, i) => i);
+
+        // Compute dataset-level min and max for color normalization
+        const { min, max } = datasetMinMax();
+        DS_MIN = min;
+        DS_MAX = max;
+
+        // Choose colorscale and metric label per dataset
+        const isMPGHot = /mpghot/i.test(label) || /data_mpghot\.json$/i.test(file);
+        if (isMPGHot) {
+          DS_METRIC = "RMSE";
+          DS_MIN = 0;
+          DS_MAX = 0.4;
+
+          // Colormap magma_r exacto (de Matplotlib), amarillo claro → negro
+          DS_COLOR = [
+            [0.0, '#fcfdbf'],
+            [0.071, '#feec9f'],
+            [0.143, '#fed481'],
+            [0.214, '#fdb163'],
+            [0.286, '#f7814c'],
+            [0.357, '#e75239'],
+            [0.429, '#d02130'],
+            [0.5, '#b01137'],
+            [0.571, '#870b4a'],
+            [0.643, '#5f0f52'],
+            [0.714, '#3b0f4f'],
+            [0.786, '#1d0f42'],
+            [0.857, '#0b0b2c'],
+            [0.929, '#03051a'],
+            [1.0, '#000004']
+          ];
+          DS_REVERSE = false; // ya está invertida manualmente
+        }
+        else {
+          DS_COLOR = "Viridis";
+          DS_REVERSE = false;
+          DS_METRIC = "MAP";
+          const { min, max } = datasetMinMax();
+          DS_MIN = min;
+          DS_MAX = max;
+        }
+
         // Build controls
         buildModelControls();
         buildFeatureControls();
-        // Wire global controls
-        searchEl.addEventListener("input", () => drawHeatmap());
-        sortEl.addEventListener("change", () => drawHeatmap());
-        webglEl.addEventListener("change", () => drawHeatmap());
+
+        // Wire global controls (only once is fine; multiple adds harmless but we avoid duplication)
+        searchEl.oninput = () => drawHeatmap();
+        sortEl.onchange = () => drawHeatmap();
+        webglEl.onchange = () => drawHeatmap();
+
         // First render
         drawHeatmap();
       } catch (e) {
@@ -372,3 +439,4 @@
   </script>
 </body>
 </html>
+
