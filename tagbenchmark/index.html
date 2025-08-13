@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MAP heatmap by model and feature</title>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <style>
+    :root { --gap: 12px; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif; margin: 0; padding: 16px; background: #fafafa; }
+    h1 { font-size: 1.2rem; margin: 0 0 6px; }
+    .dataset-bar { display: flex; flex-wrap: wrap; gap: var(--gap); margin: 6px 0 10px; }
+    .ds-btn { cursor: pointer; border: 1px solid #ddd; background: #fff; border-radius: 9999px; padding: 10px 16px; font-size: 1rem; min-width: 220px; }
+    .ds-btn:hover { background: #f5f5f5; }
+    .ds-btn.active { background: #111; color: #fff; border-color: #111; }
+    .wrap { display: grid; grid-template-columns: 360px 1fr; gap: var(--gap); align-items: start; }
+    .panel { border: 1px solid #ddd; border-radius: 10px; padding: 12px; background: #fff; }
+    .small { font-size: 0.9rem; color: #444; }
+    #controls { max-height: 84vh; overflow: auto; }
+    .cols { display: grid; grid-template-columns: 1fr; gap: 6px; margin-top: 8px; }
+    .col-item { display: flex; align-items: center; gap: 8px; padding: 4px 6px; border-radius: 8px; }
+    .col-item:hover { background: #f6f6f6; }
+    .btns { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    button { cursor: pointer; border: 1px solid #ddd; background: #fafafa; border-radius: 8px; padding: 6px 10px; }
+    button:hover { background: #f0f0f0; }
+    .row { display: grid; gap: 8px; align-items: center; grid-template-columns: 1fr; margin-top: 8px; }
+    .row > * { width: 100%; }
+    select, input[type="search"] { padding: 6px 10px; border: 1px solid #ddd; border-radius: 8px; }
+    #heat { width: 100%; height: 80vh; }
+    .note { margin-top: 8px; }
+    .warn { color: #b54708; background: #fff7ed; border: 1px solid #fed7aa; padding: 8px; border-radius: 8px; display: none; }
+    .error { color: #b42318; background: #fee4e2; border: 1px solid #fecdca; padding: 8px; border-radius: 8px; display: none; }
+    .legend { font-size: 0.9rem; color: #555; }
+    .inline { display: inline-flex; align-items: baseline; gap: 8px; }
+    .muted { color: #666; }
+    a { color: #0b5ed7; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .group-title { margin-top: 12px; font-weight: 600; }
+    /* Scroll areas for long lists */
+    #featureList { max-height: 32vh; overflow: auto; border: 1px dashed #eee; border-radius: 8px; padding: 6px; }
+    #colList { max-height: 22vh; overflow: auto; border: 1px dashed #eee; border-radius: 8px; padding: 6px; }
+  </style>
+</head>
+<body>
+  <h1>MAP heatmap by model and feature</h1>
+
+  <div class="dataset-bar">
+    <button class="ds-btn active" data-file="data_jamendo.json" data-label="MTG-Jamendo dataset">MTG-Jamendo dataset</button>
+    <button class="ds-btn" data-file="data_magnatagatune.json" data-label="MagnaTagATune dataset">MagnaTagATune dataset</button>
+    <button class="ds-btn" data-file="data_mpghot.json" data-label="MPGHot-reg dataset">MPGHot-reg dataset</button>
+  </div>
+  <div id="dslabel" class="small inline">
+    <span>Current dataset:</span>
+    <strong id="dsname">MTG-Jamendo dataset</strong>
+    <span class="muted">(<a id="dslink" href="#" target="_blank" rel="noopener">open JSON</a>)</span>
+  </div>
+
+  <div class="wrap">
+    <div id="controls" class="panel">
+      <div class="small">
+        7 columns (one per model). All features are included. You can filter, sort, and toggle models and features.
+      </div>
+
+      <!-- Global row search and sort -->
+      <div class="row">
+        <label class="legend" for="search">Filter rows (features):</label>
+        <input id="search" type="search" placeholder="Type to filter..." />
+      </div>
+      <div class="row">
+        <label class="legend" for="sort">Sort rows:</label>
+        <select id="sort">
+          <option value="original">Original order</option>
+          <option value="alpha">Alphabetical</option>
+          <option value="mean">By mean MAP of selected models (desc)</option>
+        </select>
+      </div>
+      <div class="row">
+        <label class="legend"><input type="checkbox" id="webgl" /> Use WebGL (faster for many rows)</label>
+      </div>
+
+      <!-- Models group -->
+      <div class="group-title">Models</div>
+      <div class="btns">
+        <button id="btn-all">Select all models</button>
+        <button id="btn-none">Clear selection</button>
+      </div>
+      <div id="colList" class="cols" aria-label="Model list"></div>
+
+      <!-- Features group -->
+      <div class="group-title">Features</div>
+      <div class="btns">
+        <button id="btn-f-all">Select all features</button>
+        <button id="btn-f-none">Clear features</button>
+      </div>
+      <div id="featureList" class="cols" aria-label="Feature list"></div>
+
+      <div id="warn" class="note warn">Select at least one model and one feature.</div>
+      <div id="err" class="note error">Could not load the dataset file.</div>
+    </div>
+
+    <div class="panel">
+      <div id="heat"></div>
+    </div>
+  </div>
+
+  <script>
+    // Desired order for model columns (case-insensitive, punctuation-insensitive)
+    const DESIRED_MODEL_ORDER = ["whisper", "clap", "maest", "mule", "mert", "musicfm", "omar-rq"];
+
+    const colListEl = document.getElementById("colList");
+    const featListEl = document.getElementById("featureList");
+    const warnEl = document.getElementById("warn");
+    const errEl = document.getElementById("err");
+    const searchEl = document.getElementById("search");
+    const sortEl = document.getElementById("sort");
+    const webglEl = document.getElementById("webgl");
+    const dsnameEl = document.getElementById("dsname");
+    const dslinkEl = document.getElementById("dslink");
+
+    let DATA = null;        // { rows: string[], columns: string[], values: (number|null)[][] }
+    let originalIdx = [];   // row indices [0..n-1] in the dataset original order
+    let filteredIdx = [];   // current row indices after filter + sort + feature selection
+
+    function absUrl(path) {
+      try { return new URL(path, window.location.href).href; }
+      catch (e) { return path; }
+    }
+
+    function normKey(s) {
+      return String(s || "")
+        .toLowerCase()
+        .replace(/[\s_\-]/g, "")
+        .replace(/[^\w]/g, "");
+    }
+
+    function reorderColumnsToDesiredOrder(data) {
+      const normals = data.columns.map(c => normKey(c));
+      const used = new Set();
+      const orderedIndices = [];
+
+      DESIRED_MODEL_ORDER.forEach(name => {
+        const key = normKey(name);
+        const idx = normals.findIndex(c => c === key);
+        if (idx !== -1 && !used.has(idx)) {
+          orderedIndices.push(idx);
+          used.add(idx);
+        }
+      });
+      // Append any remaining columns not in desired list
+      normals.forEach((_, i) => { if (!used.has(i)) orderedIndices.push(i); });
+
+      // Apply reorder
+      data.columns = orderedIndices.map(i => data.columns[i]);
+      data.values = data.values.map(row => orderedIndices.map(i => row[i]));
+    }
+
+    function makeCheckbox(id, label, checked = true) {
+      const wrap = document.createElement("label");
+      wrap.className = "col-item";
+      const cb = document.createElement("input");
+      cb.type = "checkbox";
+      cb.id = id;
+      cb.checked = checked;
+      cb.dataset.label = label;
+      const txt = document.createElement("span");
+      txt.textContent = label;
+      wrap.appendChild(cb);
+      wrap.appendChild(txt);
+      return { wrap, cb };
+    }
+
+    function selectedColumnIndices() {
+      const inputs = colListEl.querySelectorAll("input[type='checkbox']");
+      const idx = [];
+      inputs.forEach((el, i) => { if (el.checked) idx.push(i); });
+      return idx;
+    }
+
+    function selectedFeatureIndexSet() {
+      const set = new Set();
+      const inputs = featListEl.querySelectorAll("input[type='checkbox']");
+      inputs.forEach((el, i) => { if (el.checked) set.add(i); });
+      return set;
+    }
+
+    function subsetMatrix(values, colIdx, rowIdx) {
+      return rowIdx.map(r => colIdx.map(j => values[r][j]));
+    }
+
+    function updateWarning(show) {
+      warnEl.style.display = show ? "block" : "none";
+    }
+
+    function dynamicHeight(numRows) {
+      const perRow = 18;
+      const base = 80;
+      const maxH = Math.floor(window.innerHeight * 0.9);
+      return Math.min(base + perRow * numRows, maxH);
+    }
+
+    function computeRowMeans(colIdx, rows) {
+      const means = new Map();
+      rows.forEach(r => {
+        let s = 0, c = 0;
+        colIdx.forEach(j => {
+          const v = DATA.values[r][j];
+          if (v !== null && !Number.isNaN(v)) { s += v; c += 1; }
+        });
+        const m = c > 0 ? s / c : NaN;
+        means.set(r, m);
+      });
+      return means;
+    }
+
+    function applyFilterSortAndSelection() {
+      const q = searchEl.value.trim().toLowerCase();
+      const featureSet = selectedFeatureIndexSet();
+      let idx = originalIdx.filter(i => {
+        const match = !q || (DATA.rows[i] || "").toLowerCase().includes(q);
+        const selected = featureSet.has(i);
+        return match && selected;
+      });
+
+      const colIdx = selectedColumnIndices();
+      const mode = sortEl.value;
+      if (mode === "alpha") {
+        idx.sort((a, b) => (DATA.rows[a] || "").localeCompare(DATA.rows[b] || ""));
+      } else if (mode === "mean") {
+        const means = computeRowMeans(colIdx, idx);
+        idx.sort((a, b) => {
+          const ma = means.get(a);
+          const mb = means.get(b);
+          if (Number.isNaN(ma) && Number.isNaN(mb)) return 0;
+          if (Number.isNaN(ma)) return 1;
+          if (Number.isNaN(mb)) return -1;
+          return mb - ma; // desc
+        });
+      }
+      filteredIdx = idx;
+    }
+
+    function drawHeatmap() {
+      if (!DATA) return;
+      const colIdx = selectedColumnIndices();
+      const featureSet = selectedFeatureIndexSet();
+      if (colIdx.length === 0 || featureSet.size === 0) {
+        updateWarning(true);
+        Plotly.react("heat", [], {}, {});
+        return;
+      }
+      updateWarning(false);
+
+      applyFilterSortAndSelection();
+
+      const z = subsetMatrix(DATA.values, colIdx, filteredIdx);
+      const x = colIdx.map(j => DATA.columns[j]);
+      const y = filteredIdx.map(i => DATA.rows[i]);
+
+      const h = dynamicHeight(y.length);
+      document.getElementById("heat").style.height = h + "px";
+
+      const useGL = webglEl.checked || y.length > 600;
+      const traceType = useGL ? "heatmapgl" : "heatmap";
+
+      const trace = {
+        type: traceType,
+        z: z,
+        x: x,
+        y: y,
+        colorscale: "Viridis",
+        zmin: 0,
+        zmax: 1,
+        colorbar: { title: "MAP" },
+        hoverongaps: false,
+        hovertemplate: "Feature: %{y}<br>Model: %{x}<br>MAP: %{z:.3f}<extra></extra>"
+      };
+
+      const layout = {
+        margin: { l: 260, r: 10, t: 20, b: 80 },
+        xaxis: { automargin: true },
+        yaxis: { automargin: true },
+      };
+      const config = { responsive: true };
+      Plotly.react("heat", [trace], layout, config);
+    }
+
+    function buildModelControls() {
+      colListEl.innerHTML = "";
+      DATA.columns.forEach((name, i) => {
+        const { wrap, cb } = makeCheckbox(`col-${i}`, name, true);
+        colListEl.appendChild(wrap);
+        cb.addEventListener("change", () => drawHeatmap());
+      });
+      document.getElementById("btn-all").addEventListener("click", () => {
+        colListEl.querySelectorAll("input[type='checkbox']").forEach(cb => cb.checked = true);
+        drawHeatmap();
+      });
+      document.getElementById("btn-none").addEventListener("click", () => {
+        colListEl.querySelectorAll("input[type='checkbox']").forEach(cb => cb.checked = false);
+        drawHeatmap();
+      });
+    }
+
+    function buildFeatureControls() {
+      featListEl.innerHTML = "";
+      DATA.rows.forEach((name, i) => {
+        const { wrap, cb } = makeCheckbox(`feat-${i}`, name, true);
+        featListEl.appendChild(wrap);
+        cb.addEventListener("change", () => drawHeatmap());
+      });
+      document.getElementById("btn-f-all").addEventListener("click", () => {
+        featListEl.querySelectorAll("input[type='checkbox']").forEach(cb => cb.checked = true);
+        drawHeatmap();
+      });
+      document.getElementById("btn-f-none").addEventListener("click", () => {
+        featListEl.querySelectorAll("input[type='checkbox']").forEach(cb => cb.checked = false);
+        drawHeatmap();
+      });
+    }
+
+    async function loadData(file, label) {
+      const url = absUrl(file);
+      dsnameEl.textContent = label || file;
+      dslinkEl.href = url;
+      errEl.style.display = "none";
+      errEl.textContent = "";
+
+      try {
+        const resp = await fetch(url, { cache: "no-store" });
+        if (!resp.ok) { throw new Error("HTTP " + resp.status + " " + (resp.statusText || "")); }
+        let json;
+        try { json = await resp.json(); }
+        catch (_) { throw new Error("Parse error: invalid JSON"); }
+        if (!Array.isArray(json.rows) || !Array.isArray(json.columns) || !Array.isArray(json.values)) {
+          throw new Error("Invalid structure: rows/columns/values arrays are required");
+        }
+        DATA = json;
+        // Enforce desired column order
+        reorderColumnsToDesiredOrder(DATA);
+        originalIdx = DATA.rows.map((_, i) => i);
+        // Build controls
+        buildModelControls();
+        buildFeatureControls();
+        // Wire global controls
+        searchEl.addEventListener("input", () => drawHeatmap());
+        sortEl.addEventListener("change", () => drawHeatmap());
+        webglEl.addEventListener("change", () => drawHeatmap());
+        // First render
+        drawHeatmap();
+      } catch (e) {
+        console.error("Load error for", url, e);
+        errEl.textContent = "Could not load the dataset file: " + url + " — " + (e && e.message ? e.message : e);
+        errEl.style.display = "block";
+        Plotly.react("heat", [], {}, {});
+      }
+    }
+
+    function initDatasetButtons() {
+      const buttons = document.querySelectorAll(".ds-btn");
+      buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          buttons.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          loadData(btn.dataset.file, btn.dataset.label);
+        });
+      });
+      const first = document.querySelector(".ds-btn.active");
+      if (first) loadData(first.dataset.file, first.dataset.label);
+    }
+
+    initDatasetButtons();
+  </script>
+</body>
+</html>
