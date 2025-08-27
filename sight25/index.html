@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOWARDS PERSONALIZED PIANO PRACTICE MATERIA</title>
+    <style>
+        body {
+            max-width: 1000px;
+            margin: auto;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .abstract, .instructions, .examples {
+            text-align: justify;
+            margin-top: 20px;
+        }
+        .example-pair {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px 0;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+        img, video {
+            width: 70%;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Demo: TOWARDS PERSONALIZED PIANO PRACTICE MATERIA</h1>
+    <em>TOWARDS PERSONALIZED PIANO PRACTICE MATERIAL</em><br>
+
+    <div class="abstract">
+        <h2>Abstract</h2>
+        <p>
+            Adapting learning materials to the level of skill of a student is important in education. In the context of music training, one essential ability is sight-reading---playing unfamiliar scores at first sight---which benefits from progressive and level-appropriate practice. However, creating exercises at the appropriate level of difficulty demands significant time and effort. We address this challenge as a controlled symbolic music generation task that aims to produce piano scores with a desired difficulty level. Controlling symbolic generation through conditioning is commonly done using control tokens, but these do not always have a clear impact on global properties, such as difficulty. To improve conditioning, we introduce an auxiliary optimization target for difficulty prediction that helps prevent conditioning collapse---a common issue in which models ignore control signals in the absence of explicit supervision. This auxiliary objective helps the model to learn internal representations aligned with the target difficulty. This enables more precise and adaptive score generation. Evaluation with automatic metrics and expert judgments shows better control of difficulty and potential educational value. Our approach represents a step toward personalized music education through the generation of difficulty-aware practice material.
+        </p>
+    </div>
+
+    <img src="teaser.png" alt="Teaser Image">
+
+    <div class="instructions">
+        <h2>Instructions</h2>
+        <p>
+            - You have 10 minutes to study the score.<br>
+            - Do not play during the study time, only look at the score.<br>
+            - Play the piece once from beginning to end without stopping.<br>
+            - Focus on rhythm, tempo, and musicality, even with mistakes.
+        </p>
+    </div>
+
+    <div class="examples">
+        <h2>Examples</h2>
+        <p>
+            One of the authors performed these internal examples, picking 5 random samples from each category. To avoid identification, we reduced video resolution; if the paper is accepted, the resolution will be restored. These exercises are not included in the user study, and no author participates as a subject in the user study.<br>
+            This is only a supplementary material that we think is interesting, and shows the model is performing well in order to generate exercises for sight-reading.<br>
+            We can clearly observe how mistakes increase as the difficulty rises (Easy, Medium, Advanced).
+        </p>
+
+        <h3>Examples - Easy</h3>
+        <div class="example-pair">
+            <img src="png_first/easy_1.png" alt="Easy Score 1">
+            <video controls>
+                <source src="mp4_first/easy_1.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="example-pair">
+            <img src="png_first/easy_2.png" alt="Easy Score 2">
+            <video controls>
+                <source src="mp4_first/easy_2.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="example-pair">
+            <img src="png_first/easy_3.png" alt="Easy Score 3">
+            <video controls>
+                <source src="mp4_first/easy_3.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="example-pair">
+            <img src="png_first/easy_4.png" alt="Easy Score 4">
+            <video controls>
+                <source src="mp4_first/easy_4.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="example-pair">
+            <img src="png_first/easy_5.png" alt="Easy Score 5">
+            <video controls>
+                <source src="mp4_first/easy_5.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <h3>Examples - Medium</h3>
+        <div class="example-pair">
+            <img src="png_first/mid_1.png" alt="Medium Score 1">
+            <video controls>
+                <source src="mp4_first/mid_1.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="example-pair">
+            <img src="png_first/mid_2.png" alt="Medium Score 2">
+            <video controls>
+                <source src="mp4_first/mid_2.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="example-pair">
+            <img src="png_first/mid_3.png" alt="Medium Score 3">
+            <video controls>
+                <source src="mp4_first/mid_3.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="example-pair">
+            <img src="png_first/mid_4.png" alt="Medium Score 4">
+            <video controls>
+                <source src="mp4_first/mid_4.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="example-pair">
+            <img src="png_first/mid_5.png" alt="Medium Score 5">
+            <video controls>
+                <source src="mp4_first/mid_5.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <h3>Examples - Advanced</h3>
+        <div class="example-pair">
+            <img src="png_first/diff_1.png" alt="Advanced Score 1">
+            <video controls>
+                <source src="mp4_first/diff_1.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="example-pair">
+            <img src="png_first/diff_2.png" alt="Advanced Score 2">
+            <video controls>
+                <source src="mp4_first/diff_2.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="example-pair">
+            <img src="png_first/diff_3.png" alt="Advanced Score 3">
+            <video controls>
+                <source src="mp4_first/diff_3.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="example-pair">
+            <img src="png_first/diff_4.png" alt="Advanced Score 4">
+            <video controls>
+                <source src="mp4_first/diff_4.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="example-pair">
+            <img src="png_first/diff_5.png" alt="Advanced Score 5">
+            <video controls>
+                <source src="mp4_first/diff_5.mp4" type="video/mp4">
+            </video>
+        </div>
+
+    </div>
+
+</body>
+</html>
