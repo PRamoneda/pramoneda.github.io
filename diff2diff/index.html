@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Piano Score Simplification</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.2em;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        .abstract {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            border-left: 4px solid #3498db;
+        }
+        .abstract h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .video-category {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        .video-category h3 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            text-transform: capitalize;
+        }
+        .video-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .video-item {
+            text-align: center;
+        }
+        .video-item h4 {
+            color: #34495e;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+        .video-item video {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .original {
+            border: 2px solid #3498db;
+        }
+        .simplified {
+            border: 2px solid #9b59b6;
+        }
+        .original h4::before {
+            content: "🎼 ";
+        }
+        .simplified h4::before {
+            content: "🎹 ";
+        }
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            .video-pair {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI-Powered Piano Score Simplification</h1>
+        <p class="subtitle">Anonymous submission • Under Blind Review</p>
+        
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>
+                AI can help make music education more accessible by simplifying complex piano pieces. 
+                However, most current methods use proprietary datasets and MIDI format, which limits 
+                their practical use and prevents researchers from building upon existing work.
+            </p>
+            <p>
+                We present a transformer-based method for simplifying MusicXML piano scores. Instead 
+                of using manually annotated data, we create a synthetic dataset with pairs of original 
+                and simplified versions of the same piece. Our method uses pretrained models to 
+                ensure appropriate difficulty levels and maintain musical style.
+            </p>
+            <p>
+                Experiments show our method accurately controls difficulty while preserving musical 
+                quality. We openly release all code, data, and models to promote reproducible 
+                research and support inclusive music education.
+            </p>
+        </div>
+
+        <h2>Demonstration Videos</h2>
+        <p style="text-align: center; color: #7f8c8d; margin-bottom: 30px;">
+            The following videos showcase our method's ability to transform complex piano scores into simplified versions while maintaining musical integrity.
+        </p>
+
+        <div class="video-grid">
+            <div class="video-category">
+                <h3>Latin</h3>
+                <div class="video-pair">
+                    <div class="video-item original">
+                        <h4>Original</h4>
+                        <video controls class="original">
+                            <source src="examples/video-score_latin_original.musicxml.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-item simplified">
+                        <h4>Simplified</h4>
+                        <video controls class="simplified">
+                            <source src="examples/video-score_latin_simplified.musicxml.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-category">
+                <h3>Classical</h3>
+                <div class="video-pair">
+                    <div class="video-item original">
+                        <h4>Original</h4>
+                        <video controls class="original">
+                            <source src="examples/video-score_classical_original.musicxml.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-item simplified">
+                        <h4>Simplified</h4>
+                        <video controls class="simplified">
+                            <source src="examples/video-score_classical_simplified.musicxml.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-category">
+                <h3>Film</h3>
+                <div class="video-pair">
+                    <div class="video-item original">
+                        <h4>Original</h4>
+                        <video controls class="original">
+                            <source src="examples/video-score_film_original.musicxml.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-item simplified">
+                        <h4>Simplified</h4>
+                        <video controls class="simplified">
+                            <source src="examples/video-score_film_simplified.musicxml.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-category">
+                <h3>K-Pop</h3>
+                <div class="video-pair">
+                    <div class="video-item original">
+                        <h4>Original</h4>
+                        <video controls class="original">
+                            <source src="examples/video-score_k-pop_original.musicxml.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-item simplified">
+                        <h4>Simplified</h4>
+                        <video controls class="simplified">
+                            <source src="examples/video-score_k-pop_simplified.musicxml.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-category">
+                <h3>Pop</h3>
+                <div class="video-pair">
+                    <div class="video-item original">
+                        <h4>Original</h4>
+                        <video controls class="original">
+                            <source src="examples/video-score_pop_original.musicxml.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-item simplified">
+                        <h4>Simplified</h4>
+                        <video controls class="simplified">
+                            <source src="examples/video-score_pop_simplified.musicxml.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-category">
+                <h3>Rock</h3>
+                <div class="video-pair">
+                    <div class="video-item original">
+                        <h4>Original</h4>
+                        <video controls class="original">
+                            <source src="examples/video-score_rock_original.musicxml.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-item simplified">
+                        <h4>Simplified</h4>
+                        <video controls class="simplified">
+                            <source src="examples/video-score_rock_simplified.musicxml.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
