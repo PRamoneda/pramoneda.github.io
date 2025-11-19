@@ -108,26 +108,24 @@
 </head>
 <body>
     <div class="container">
-        <h1>AI-Powered Piano Score Simplification</h1>
-        <p class="subtitle">Anonymous submission • Under Blind Review</p>
+        <h1>Difficulty-Controlled Simplification of Piano Scores with Synthetic Data for Inclusive Music Education</h1>
+        <div class="subtitle">
+            PEDRO RAMONEDA, Music Technology Group, Universitat Pompeu Fabra, Spain<br>
+            EMILIA PARADA-CABALEIRO, Pedagogy Department, Nuremberg University of Music, Germany<br>
+            DASAEM JEONG, Music and Arts Learning Lab, Sogang University, South Korea<br>
+            XAVIER SERRA, Music Technology Group, Universitat Pompeu Fabra, Spain
+        </div>
         
         <div class="abstract">
             <h2>Abstract</h2>
             <p>
-                AI can help make music education more accessible by simplifying complex piano pieces. 
-                However, most current methods use proprietary datasets and MIDI format, which limits 
-                their practical use and prevents researchers from building upon existing work.
+                Despite its potential, AI advances in music education are hindered by proprietary systems that limit the democratization of technology in this domain. In particular, AI-driven music difficulty adjustment is especially promising, as simplifying complex pieces can make music education more inclusive and accessible to learners of all ages and contexts. Nevertheless, recent efforts have relied on proprietary datasets, which prevents the research community from reproducing, comparing, or extending the current state of the art. In addition, while these generative methods offer great potential, most of them use the MIDI format, which, unlike others, such as MusicXML, lacks readability and layout information, thereby limiting their practical use for human performers.
             </p>
             <p>
-                We present a transformer-based method for simplifying MusicXML piano scores. Instead 
-                of using manually annotated data, we create a synthetic dataset with pairs of original 
-                and simplified versions of the same piece. Our method uses pretrained models to 
-                ensure appropriate difficulty levels and maintain musical style.
+                This work introduces a transformer-based method for adjusting the difficulty of MusicXML piano scores. Unlike previous methods, which rely on annotated datasets, we propose a synthetic dataset composed of pairs of piano scores ordered by estimated difficulty, with each pair comprising a more challenging and easier arrangement of the same piece. We generate these pairs by creating variations conditioned on the same melody and harmony and leverage pretrained models to assess difficulty and style, ensuring appropriate pairing.
             </p>
             <p>
-                Experiments show our method accurately controls difficulty while preserving musical 
-                quality. We openly release all code, data, and models to promote reproducible 
-                research and support inclusive music education.
+                The experimental results illustrate the validity of the proposed approach, showing accurate control of playability and target difficulty, as highlighted through qualitative and quantitative evaluations. In contrast to previous work, we openly release all resources (code, dataset, and models), ensuring reproducibility while fostering open-source innovation to help bridge the digital divide.
             </p>
         </div>
 
