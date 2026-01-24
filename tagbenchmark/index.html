@@ -36,6 +36,13 @@
     a { color: #0b5ed7; text-decoration: none; }
     a:hover { text-decoration: underline; }
     .group-title { margin-top: 12px; font-weight: 600; }
+    .tabs { display: flex; flex-wrap: wrap; gap: var(--gap); margin: 12px 0 6px; }
+    .tab-btn { cursor: pointer; border: 1px solid #ddd; background: #fff; border-radius: 9999px; padding: 10px 16px; font-size: 1rem; }
+    .tab-btn:hover { background: #f5f5f5; }
+    .tab-btn.active { background: #111; color: #fff; border-color: #111; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    #gene-frame { width: 100%; height: 85vh; border: 1px solid #ddd; border-radius: 10px; background: #fff; }
     /* Scroll areas for long lists */
     #featureList { max-height: 32vh; overflow: auto; border: 1px dashed #eee; border-radius: 8px; padding: 6px; }
     #colList { max-height: 22vh; overflow: auto; border: 1px dashed #eee; border-radius: 8px; padding: 6px; }
@@ -44,68 +51,82 @@
 <body>
   <h1>Performance heatmap by model and feature</h1>
 
-  <div class="dataset-bar">
-    <button class="ds-btn active" data-file="data_jamendo.json" data-label="MTG-Jamendo dataset">MTG-Jamendo dataset</button>
-    <button class="ds-btn" data-file="data_magnatagatune.json" data-label="MagnaTagATune dataset">MagnaTagATune dataset</button>
-    <button class="ds-btn" data-file="data_mpghot.json" data-label="MPGHot-reg dataset">MPGHot-reg dataset</button>
-  </div>
-  <div id="dslabel" class="small inline">
-    <span>Current dataset:</span>
-    <strong id="dsname">MTG-Jamendo dataset</strong>
-    <span class="muted">(<a id="dslink" href="#" target="_blank" rel="noopener">open JSON</a>)</span>
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="heatmap">Heatmap</button>
+    <button class="tab-btn" data-tab="gene">Gene boxplots</button>
   </div>
 
-  <div class="wrap">
-    <div id="controls" class="panel">
-      <div class="small">
-        7 columns (one per model). All features are included. You can filter, sort, and toggle models and features.
-      </div>
-
-      <!-- Global row search and sort -->
-      <div class="row">
-        <label class="legend" for="search">Filter rows (features):</label>
-        <input id="search" type="search" placeholder="Type to filter..." />
-      </div>
-      <div class="row">
-        <label class="legend" for="sort">Sort rows:</label>
-        <select id="sort">
-          <option value="original">Original order</option>
-          <option value="alpha">Alphabetical</option>
-          <option value="mean">By mean of selected models (desc)</option>
-        </select>
-      </div>
-      <div class="row">
-        <label class="legend"><input type="checkbox" id="webgl" /> Use WebGL (faster for many rows)</label>
-      </div>
-
-      <!-- Models group -->
-      <div class="group-title">Models</div>
-      <div class="btns">
-        <button id="btn-all">Select all models</button>
-        <button id="btn-none">Clear selection</button>
-      </div>
-      <div id="colList" class="cols" aria-label="Model list"></div>
-
-      <!-- Features group -->
-      <div class="group-title">Features</div>
-      <div class="btns">
-        <button id="btn-f-all">Select all features</button>
-        <button id="btn-f-none">Clear features</button>
-      </div>
-      <div id="featureList" class="cols" aria-label="Feature list"></div>
-
-      <div id="warn" class="note warn">Select at least one model and one feature.</div>
-      <div id="err" class="note error">Could not load the dataset file.</div>
+  <div class="tab-panel active" data-tab="heatmap">
+    <div class="dataset-bar">
+      <button class="ds-btn active" data-file="data_jamendo.json" data-label="MTG-Jamendo dataset">MTG-Jamendo dataset</button>
+      <button class="ds-btn" data-file="data_magnatagatune.json" data-label="MagnaTagATune dataset">MagnaTagATune dataset</button>
+      <button class="ds-btn" data-file="data_mpghot.json" data-label="MPGHot-reg dataset">MPGHot-reg dataset</button>
+    </div>
+    <div id="dslabel" class="small inline">
+      <span>Current dataset:</span>
+      <strong id="dsname">MTG-Jamendo dataset</strong>
+      <span class="muted">(<a id="dslink" href="#" target="_blank" rel="noopener">open JSON</a>)</span>
     </div>
 
-    <div class="panel">
-      <div id="heat"></div>
+    <div class="wrap">
+      <div id="controls" class="panel">
+        <div class="small">
+          7 columns (one per model). All features are included. You can filter, sort, and toggle models and features.
+        </div>
+
+        <!-- Global row search and sort -->
+        <div class="row">
+          <label class="legend" for="search">Filter rows (features):</label>
+          <input id="search" type="search" placeholder="Type to filter..." />
+        </div>
+        <div class="row">
+          <label class="legend" for="sort">Sort rows:</label>
+          <select id="sort">
+            <option value="original">Original order</option>
+            <option value="alpha">Alphabetical</option>
+            <option value="mean">By mean of selected models (desc)</option>
+          </select>
+        </div>
+        <div class="row">
+          <label class="legend"><input type="checkbox" id="webgl" /> Use WebGL (faster for many rows)</label>
+        </div>
+
+        <!-- Models group -->
+        <div class="group-title">Models</div>
+        <div class="btns">
+          <button id="btn-all">Select all models</button>
+          <button id="btn-none">Clear selection</button>
+        </div>
+        <div id="colList" class="cols" aria-label="Model list"></div>
+
+        <!-- Features group -->
+        <div class="group-title">Features</div>
+        <div class="btns">
+          <button id="btn-f-all">Select all features</button>
+          <button id="btn-f-none">Clear features</button>
+        </div>
+        <div id="featureList" class="cols" aria-label="Feature list"></div>
+
+        <div id="warn" class="note warn">Select at least one model and one feature.</div>
+        <div id="err" class="note error">Could not load the dataset file.</div>
+      </div>
+
+      <div class="panel">
+        <div id="heat"></div>
+      </div>
     </div>
+  </div>
+
+  <div class="tab-panel" data-tab="gene">
+    <iframe id="gene-frame" src="../gene_boxplots.html" title="Gene boxplots"></iframe>
   </div>
 
   <script>
     // Desired order for model columns (case-insensitive, punctuation-insensitive)
     const DESIRED_MODEL_ORDER = ["whisper", "clap", "maest", "mule", "mert", "musicfm", "omar-rq"];
+
+    const tabButtons = document.querySelectorAll(".tab-btn");
+    const tabPanels = document.querySelectorAll(".tab-panel");
 
     const colListEl = document.getElementById("colList");
     const featListEl = document.getElementById("featureList");
@@ -132,6 +153,18 @@
       try { return new URL(path, window.location.href).href; }
       catch (e) { return path; }
     }
+
+    function setActiveTab(tab) {
+      tabButtons.forEach(btn => btn.classList.toggle("active", btn.dataset.tab === tab));
+      tabPanels.forEach(panel => panel.classList.toggle("active", panel.dataset.tab === tab));
+      if (tab === "heatmap" && window.Plotly && document.getElementById("heat")) {
+        Plotly.Plots.resize("heat");
+      }
+    }
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener("click", () => setActiveTab(btn.dataset.tab));
+    });
 
     function normKey(s) {
       return String(s || "")
